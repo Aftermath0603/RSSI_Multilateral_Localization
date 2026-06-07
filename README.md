@@ -6,9 +6,9 @@
 
 本项目包含三套独立固件工程，分别对应不同功能硬件，按需烧录至对应设备即可运行：
 
-- `RSSI_emitter/`：发射节点程序（烧录至 ESP32-C3）
-- `RSSI_receiver/`：接收节点程序（在宏定义修改从机名，分别烧录至三台 ESP32-C3）
-- `RSSI_compute/`：主控解算节点程序（烧录至 ESP32-P4）
+- RSSI_emitter/：发射节点程序（烧录至 ESP32-C3）
+- RSSI_receiver/：接收节点程序（在宏定义修改从机名，分别烧录至三台 ESP32-C3）
+- RSSI_compute/：主控解算节点程序（烧录至 ESP32-P4）
 
 > 补充说明：蓝牙透传底层协议、数据帧格式、通信逻辑详见独立仓库。
 
@@ -61,19 +61,19 @@ $$
 
 1.  **线性化处理**
     将二次方程组两两作差，消去二次项，化简得到标准线性方程组：
-    $$
-    \boldsymbol{A}\boldsymbol{X} = \boldsymbol{B}
-    $$
+
+    $\boldsymbol{A}\boldsymbol{X} = \boldsymbol{B}$
+
     其中：
     - $\boldsymbol{A}$：由三个锚点坐标构成的系数矩阵；
-    - $\boldsymbol{X} = \begin{bmatrix} x \\ y \end{bmatrix}$：待求解的目标二维坐标；
+    - X = [x; y]：待求解的目标二维坐标；
     - $\boldsymbol{B}$：由距离、锚点坐标组合得到的常数向量。
 
-2.  **最小二乘最优解**
+3.  **最小二乘最优解**
     对线性方程组求解最小二乘解，公式如下：
-    $$
-    \boldsymbol{X} = (\boldsymbol{A}^\mathrm{T} \boldsymbol{A})^{-1} \boldsymbol{A}^\mathrm{T} \boldsymbol{B}
-    $$
+    
+    $\boldsymbol{X} = (\boldsymbol{A}^\mathrm{T} \boldsymbol{A})^{-1} \boldsymbol{A}^\mathrm{T} \boldsymbol{B}$ 
+    
     - $\boldsymbol{A}^\mathrm{T}$：矩阵 $\boldsymbol{A}$ 的转置矩阵；
     - $(\boldsymbol{A}^\mathrm{T} \boldsymbol{A})^{-1}$：矩阵 $\boldsymbol{A}^\mathrm{T}\boldsymbol{A}$ 的逆矩阵。
 
